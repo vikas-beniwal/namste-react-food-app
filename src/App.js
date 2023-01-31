@@ -3,15 +3,14 @@ import ReactDOM from "react-dom/client";
 import HeaderComponent from "./component/header";
 import Body from "./component/Body";
 import About from "./component/About";
+import Footer from "./component/Footer";
 import Error from "./component/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./component/RestaurantMenu";
+import Profile from "./component/ProfileComponent";
 
 
-const Footer  = () =>(
-    <h4>fffffffff</h4>
-        
-    );
+
 
 const AppLayout  = () => {
     return( 
@@ -35,7 +34,13 @@ const appRouter = createBrowserRouter([
         children:[
             {
                 path:"/about",
-                element:<About />        
+                element:<About />,
+                children:[
+                    {
+                        path:"profile",
+                        element: <Profile />
+                    }
+                ]        
             },
             {
                 path:"/",
