@@ -5,10 +5,19 @@ import Shimmer from "./Shimmer";
 import { CircleFill, CurrencyRupee } from "react-bootstrap-icons";
 import imageNotFound from "../assets/img/noimage.jpg";
 import useRestaurant from "../utils/useRestaurant";
+import {addItem} from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
     const restaurant = useRestaurant(resId);
+
+    const dispatch = useDispatch()
+
+    const addFoodItem = (item) => {
+        dispatch(addItem(item))
+    }
+    
 
     return (!restaurant) ? <Shimmer /> :(
         <div className="restaurant-card">
@@ -29,7 +38,7 @@ const RestaurantMenu = () => {
                     
                 </div>
             </div>
-            <div className="menu">
+            <div className="menu flex">
                     
                 <h1>Menu{
                     console.log(Object.values(restaurant?.menu?.items))
@@ -68,7 +77,7 @@ const RestaurantMenu = () => {
               ) : <img  alt="not found" src={imageNotFound}/>}
             </div>
             </div>
-
+                {item.name}  - <button className="p-2 m-2 bg-green-300" onClick={()=>addFoodItem(item)}> Add </button>
           </div>
                      ))
                 } 

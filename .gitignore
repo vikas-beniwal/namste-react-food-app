@@ -7,7 +7,7 @@
 .parcel-cache
 dist/
 node_modules/
-package-lock.json
+.package-lock.json
 
 # User-specific files
 *.rsuser
